@@ -1,3 +1,8 @@
-{% if sansible_ssmtp_revaliases == true %}
-{{ sansible_ssmtp_user }}:{{ sansible_ssmtp_mailserver_username }}:{{ sansible_ssmtp_mailserver_host }}:{{ sansible_ssmtp_mailserver_port }}
+{% if ssmtp_revaliases | length > 0 %}
+{% for alias in ssmtp_revaliases %}
+  {{ alias.user }}:{{ alias.from }}:{{
+    alias.mailhub
+    | default(ssmtp_mailserver_host + ':' + ssmtp_mailserver_port | string)
+  }}
+{% endfor %}
 {% endif %}

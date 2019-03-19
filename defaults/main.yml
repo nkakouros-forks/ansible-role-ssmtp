@@ -1,15 +1,32 @@
 ---
 
-sansible_ssmtp_auth: yes
-sansible_ssmtp_group: ~
-sansible_ssmtp_mailserver_fromlineoverride: no
-sansible_ssmtp_mailserver_host: ~
-sansible_ssmtp_mailserver_password: ~
-sansible_ssmtp_mailserver_port: ~
-sansible_ssmtp_mailserver_rewritedomain: no
-sansible_ssmtp_mailserver_root: no
-sansible_ssmtp_mailserver_username: ~
-sansible_ssmtp_restrict: yes
-sansible_ssmtp_revaliases: yes
-sansible_ssmtp_use_inventory_hostname: no
-sansible_ssmtp_user: ~
+# Set to false to completely disable the role
+ssmtp_enable: true
+
+# Use ssmtp_user and ssmtp_group to change ownership of ssmtp config and
+# executable
+ssmtp_restrict: true
+
+# The user and group that will be used when `ssmtp_restrict` is true
+ssmtp_user: ~
+ssmtp_group: ~
+
+# The host to send mail too
+ssmtp_mailserver_host: ~
+ssmtp_mailserver_port: ~
+
+# Set to true to enable plain text smtp authentication
+ssmtp_auth: true
+
+# Set the user and password to use for smtp authentication (if enabled)
+ssmtp_mailserver_username: ~
+ssmtp_mailserver_password: ~
+
+# See `man ssmtp.conf` for these options
+ssmtp_mailserver_hostname: ~
+ssmtp_mailserver_root: false
+ssmtp_mailserver_fromlineoverride: false
+ssmtp_mailserver_rewritedomain: false
+
+# Enable the use of the revaliases file
+ssmtp_revaliases: true
